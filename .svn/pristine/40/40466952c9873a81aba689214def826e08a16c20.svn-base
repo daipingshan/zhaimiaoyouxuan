@@ -1,0 +1,447 @@
+/* pages/goodsDetail/goodsInfo.wxss */
+
+page {
+    width: 100%;
+    background: #f8f7fa;
+}
+
+.container {
+    padding-bottom: 140rpx;
+}
+
+swiper, swiper image {
+    height: 750rpx;
+}
+
+.promotion-img {
+    width: 100%;
+    font-size: 0;
+    position: relative;
+    overflow: hidden;
+    border-bottom: 5rpx solid #c7c7c7;
+    margin-bottom: 5rpx;
+}
+
+.promotion-img .draw-image {
+    position: absolute;
+    left: 10px;
+    bottom: 20rpx;
+    font-size: 24rpx;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10rpx;
+    border-radius: 8rpx;
+}
+
+.promotion-img .current {
+    position: absolute;
+    right: 20rpx;
+    bottom: 20rpx;
+    font-size: 24rpx;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10rpx;
+    border-radius: 8rpx;
+}
+
+.promotion-img image {
+    display: block;
+    width: 100%;
+    height: 750rpx;
+}
+
+.radio {
+    position: absolute;
+    left: 20rpx;
+    top: 45rpx;
+    font-size: 24rpx;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 10rpx 20rpx;
+    border-radius: 50rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+}
+
+.radio image {
+    height: 40rpx;
+    width: 40rpx;
+    line-height: block;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    float: left;
+}
+
+.radio text {
+    line-height: 40rpx;
+    height: 40rpx;
+    display: block;
+    float: left;
+    margin-left: 10rpx;
+}
+
+.topCate {
+    color: #fff;
+    background: #fc4a54;
+    font-size: 22rpx;
+    line-height: 35rpx;
+    width: 55rpx;
+    display: inline-block;
+    text-align: center;
+    border-radius: 40rpx;
+    float: left;
+    margin-top: 2rpx;
+    margin-right: 5rpx;
+}
+
+.share {
+    height: 100rpx;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+}
+
+.btn-buy {
+    width: 43%;
+    float: left;
+}
+
+.btn-buy.no-coupon {
+    width: 86%;
+}
+
+.btn-buy.no-coupon text {
+    border-radius: 0;
+}
+
+.btn-buy text {
+    width: 100%;
+    display: block;
+    float: left;
+    text-align: center;
+    line-height: 100rpx;
+    font-size: 30rpx;
+    color: #fff;
+    background: #fc004e;
+    font-weight: bold;
+}
+
+.btn-buy button {
+    width: 100%;
+    display: block;
+    float: left;
+    text-align: center;
+    line-height: 100rpx;
+    font-size: 28rpx;
+    color: #fff;
+    background: #fe5d39;
+    font-weight: bold;
+    border: 0 !important;
+    border-radius: 0;
+}
+
+.btn-share {
+    float: left;
+    width: 43%;
+}
+
+.btn-share button {
+    display: block;
+    text-align: center;
+    line-height: 100rpx;
+    font-size: 30rpx;
+    color: #fff !important;
+    background: #f9c47c !important;
+    font-weight: bold;
+    border: 0 !important;
+    border-radius: 0;
+}
+
+.unlevel .btn-buy {
+    background: #ff2e00 !important;
+}
+
+.back-home {
+    width: 14%;
+    float: left;
+    height: 100rpx;
+    text-align: center;
+    font-size: 18rpx;
+    color: #808080;
+    position: relative;
+    overflow: hidden;
+    font-family: '平方特细';
+    background-color: #fff;
+}
+
+.back-home image {
+    width: 50rpx;
+    height: 50rpx;
+    display: block;
+    margin: 10rpx 0 5rpx;
+    position: relative;
+    left: 25%;
+}
+
+.goods-detail {
+    padding: 10rpx 0;
+    background: #fff;
+    width: 100%;
+}
+
+.goods-name {
+    font-size: 28rpx;
+    display: block;
+    padding: 0 15rpx;
+}
+
+.price-num {
+    margin: 0;
+    font-size: 22rpx;
+    color: #808080;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0 15rpx;
+}
+
+.old-price {
+    text-decoration: line-through;
+    font-weight: 350;
+    margin-left: 45rpx;
+    line-height: 75rpx;
+}
+
+.now-price {
+    color: #ff1849;
+    font-size: 24rpx;
+    line-height: 66rpx;
+}
+
+.sell-num {
+    right: 15rpx;
+    line-height: 75rpx;
+    position: absolute;
+}
+
+.item-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 10rpx;
+    width: 100%;
+}
+
+.items {
+    width: 100%;
+    font-size: 24rpx;
+    background: #fff;
+    padding: 0 20rpx;
+    margin-bottom: 10rpx;
+    height: 120rpx;
+    line-height: 120rpx;
+    position: relative;
+}
+
+.items .title {
+    width: 11%;
+    font-weight: 350;
+    float: left;
+    color: #141414;
+}
+
+.items .coupon-price {
+    color: #fff;
+    z-index: 0;
+    position: absolute;
+    left: 100rpx;
+    top: 27rpx;
+    width: 240rpx;
+    height: 65rpx;
+}
+
+.items .coupon-price image {
+    position: absolute;
+    height: 65rpx;
+    width: 240rpx;
+    z-index: -1;
+    right: 0rpx;
+}
+
+.items .coupon-price-text {
+    z-index: 10;
+    position: absolute;
+    left: 40rpx;
+    top: 10rpx;
+    color: #fff;
+    line-height: 40rpx;
+    font-size: 24rpx;
+}
+
+.stress {
+    font-weight: 900;
+    font-size: 32rpx;
+}
+
+.items .coupon-end-time {
+    display: inline-block;
+    margin-left: 260rpx;
+    font-size: 22rpx;
+    color: #808080;
+}
+
+.commission-price {
+    line-height: 75rpx;
+}
+
+.commission-price .default {
+    margin-top: 10rpx;
+    height: 40rpx;
+    font-size: 24rpx;
+    line-height: 40rpx;
+    color: #ff6232;
+    border: 1px solid #ff6232;
+    padding: 0 10rpx;
+    display: inline-block;
+    text-align: center;
+    border-radius: 10rpx;
+    font-weight: 350;
+}
+
+.commission-price .active {
+    margin-top: 10rpx;
+    height: 42rpx;
+    font-size: 24rpx;
+    line-height: 42rpx;
+    color: #fff;
+    background: #ff6232;
+    padding: 0 10rpx;
+    display: inline-block;
+    text-align: center;
+    border-radius: 10rpx;
+    font-weight: 350;
+}
+
+.commission-price text {
+    margin-right: 20rpx;
+}
+
+.commission-desc {
+    line-height: 40rpx;
+    font-size: 20rpx;
+    color: #838383;
+}
+
+.load-more {
+    width: 100%;
+    height: 80rpx;
+    line-height: 80rpx;
+    text-align: center;
+    font-size: 28rpx;
+    background: #fff;
+    color: #838383;
+}
+
+.goods-desc {
+    background-color: #fff;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.intro {
+    margin: 10rpx;
+    line-height: 45rpx;
+    font-size: 24rpx;
+    color: #808080;
+    text-align: left;
+    padding: 10rpx;
+    border: 1rpx solid #c7c7c7;
+    border-radius: 10rpx;
+    font-weight: 350;
+    width: 94%;
+}
+
+.intro-images {
+    width: 100%;
+}
+
+.intro-images image {
+    width: 100%;
+    display: block;
+}
+
+.modal-box {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    background: rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+}
+
+.modal-body {
+    position: relative;
+}
+
+.modal-content {
+    margin-left: auto;
+    margin-right: auto;
+    width: 86%;
+    overflow: hidden;
+    background: #fff;
+    padding: 0;
+}
+
+.modal-content canvas {
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    /* display: none; */
+}
+
+.close {
+    position: fixed;
+    top: 33px;
+    right: 7%;
+    z-index: 999;
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.footer {
+    height: 7%;
+    margin-right: 7%;
+    margin-left: 7%;
+    width: 86%;
+    background: red;
+    bottom: 0;
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer .footer-btn {
+    width: 50%;
+    text-align: center;
+    /* line-height: 7%; */
+    font-size: 30rpx;
+    font-family: '平方特细';
+    color: #fff;
+}
+
+.footer-close {
+    background: #808080;
+}
+
+.footer-copy {
+    background: #e6de3d;
+}
+
+.footer-save {
+    background: #febd99;
+}
+
+.footer-show {
+    background: #fe5d39;
+}

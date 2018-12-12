@@ -1,0 +1,12 @@
+/**app.wxss**/
+page{
+	/* font-family: 'PingFang SC',"YouYuan","SimHei","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif; */
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}

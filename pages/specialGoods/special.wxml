@@ -1,0 +1,30 @@
+<!--pages/search/search.wxml-->
+<view class="container">
+	<!--  商品列表  -->
+    <view class='product-cont search-content'>
+        <view class='goods-list' wx:if="{{goods_list}}">
+            <block wx:for="{{goods_list}}" wx:key="index">
+                <view class="goods-item" bindtap='gotoDetail' data-id="{{item.goods_id}}">
+                    <view class='goods-img'>
+                        <image src='{{item.goods_thumbnail_url}}'></image>
+                    </view>
+                    <view class="goods-detail">
+                        <text class='goods-name'>{{item.goods_name}}</text>
+                        <view class="gain" wx:if="{{level>0}}">赚 ¥ {{item.commission}}</view>
+                        <view class="price-num" style="margin-top:{{level<=0 ? '40rpx':'10rpx'}}">
+                            <text class="old-price">原价 ¥{{item.min_group_price}}</text>
+                            <text class="sell-num">已拼{{item.sold_quantity}}件</text>
+                        </view>
+                        <view class="now-price-num">
+                            <text class="now-price">¥<text style="font-size:36rpx">{{item.after_coupon_price}}</text></text>
+                            <view class="ticket-price" wx:if="{{item.coupon_discount!='0'}}">
+                                <text>¥{{item.coupon_discount}}</text>
+                                <image src="../../resource/page/index/ticket.png"></image>
+                            </view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+        </view>
+    </view>
+</view>

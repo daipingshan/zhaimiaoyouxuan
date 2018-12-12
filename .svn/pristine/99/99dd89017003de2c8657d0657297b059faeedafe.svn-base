@@ -1,0 +1,61 @@
+/* pages/setting/setting.wxss */
+
+page {
+    width: 100%;
+    height: 100%;
+    background: #f7f7fa;
+}
+
+.us-link {
+    width: 100%;
+}
+
+.us-link-lis {
+    width: 100%;
+    height: 86rpx;
+    background: #fff;
+    overflow: hidden;
+    margin-top: 10rpx;
+    line-height: 86rpx;
+    font-size: 28rpx;
+    color: #ff6b4a;
+    text-align: center;
+}
+
+.item {
+    width: 100%;
+    height: 86rpx;
+    background: #fff;
+    overflow: hidden;
+    margin-top: 5rpx;
+    line-height: 86rpx;
+    font-size: 28rpx;
+    color: #262626;
+    padding: 0 25rpx;
+}
+
+.title {
+    width: 25%;
+    float: left;
+}
+
+.desc {
+    float: right;
+    padding-right: 25rpx;
+    color: #c0c1c4;
+}
+
+.desc .icon {
+    display: inline-block;
+    margin-right: 10rpx;
+	line-height: 86rpx;
+	margin-left:20rpx;
+}
+
+.version {
+    text-align: center;
+    width: 100%;
+    margin-top: 20rpx;
+    font-size: 24rpx;
+    color: #808080;
+}

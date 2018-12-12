@@ -1,0 +1,11 @@
+<!--pages/withdrawals/withdrawals.wxml-->
+<view class='container'>
+    <view class="card-info">
+        <image wx:if="{{bankIcon}}" src='../../resource/images/{{bankIcon}}.png'></image>
+        <view class="card-desc">
+            <text>{{bank_name}}</text>
+            <text>{{bank_account}}</text>
+        </view>
+    </view>
+    <button bindtap="confirmChangeCard">更换绑定</button>
+</view>

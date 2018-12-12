@@ -1,0 +1,74 @@
+<!--pages/jdItem/item.wxml-->
+<view class='jd-item'>
+  <view class='top-img'>
+    <image src='/resource/page/jdAd/top-image.png'></image>
+    <view class='img-box'>
+      <navigator url="../webView/webView?url=https://jd.zhaimiaosh.com/Touch/jdExplain">
+        <view class='btn info'>
+        </view>
+      </navigator>
+      <navigator url="../payinfo/payinfo">
+        <view class='btn pay'>
+        </view>
+      </navigator>
+    </view>
+  </view>
+  <!--<view class='item-tab {{item_cate}}'>
+    <view class='item-cate free' data-val="free" bindtap='setCate'>
+      京东免单
+    </view>
+    <view class='item-cate new' data-val="new" bindtap='setCate'>
+      新客单
+    </view>
+  </view>-->
+  <!-- 商品列表  -->
+  <view class='item-list'>
+    <view class='goods-list' wx:if="{{goods}}">
+      <block wx:for="{{goods}}" wx:key="index">
+        <view class="goods-item" bindtap='gotoUrl' data-id="{{item.num_iid}}" data-url="{{item.click_url}}">
+          <view class='goods-img'>
+            <image src='{{item.pic_url}}'></image>
+          </view>
+          <view class="goods-detail">
+            <view class='goods-name'>
+              <text class="topCate">JD</text>
+              <text>{{item.title}}</text>
+            </view>
+            <view class='goods-coupon' wx:if="{{item.coupon_money!='0'}}">
+              <text>￥{{item.coupon_money}}</text>
+              <image src="/resource/page/index/ticket.png"></image>
+            </view>
+            <view class="price-num">
+              <text class="now-price">￥<text style="font-size:40rpx;margin-right:5rpx;">{{item.coupon_price}}</text></text>
+              <view class="subsidy_money" wx:if="{{item.subsidy_money!='0'}}">
+                宅喵补贴 {{item.subsidy_money}}
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>
+<view class='share' bindtap='getShare'>
+    分享朋友图
+</view>
+<view class="modal-box" hidden="{{flag}}">
+  <view class="modal-content" style="height:{{canvasHeight}}px;margin-top:{{modalMarginTop}}">
+      <canvas canvas-id='share-image' disable-scroll="{{true}}" bindtouchmove="touchMove"></canvas>
+  </view>
+  <view class="footer">
+      <view class='footer-btn footer-close' style="line-height:{{curr_height*0.07}}px" bindtap="hide">
+          关闭
+      </view>
+      <view class='footer-btn footer-copy' style="line-height:{{curr_height*0.07}}px" bindtap="copyString">
+          复制文案
+      </view>
+      <view class='footer-btn footer-save' style="line-height:{{curr_height*0.07}}px" bindtap="saveCanvas">
+          保存图片
+      </view>
+      <view class='footer-btn footer-show' style="line-height:{{curr_height*0.07}}px" bindtap="showCanvas">
+          查看大图
+      </view>
+  </view>
+</view>

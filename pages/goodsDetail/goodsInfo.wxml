@@ -1,0 +1,121 @@
+<!--pages/goodsDetail/goodsInfo.wxml-->
+<view class='container' scroll-y="{{true}}">
+    <view class='promotion-img'>
+        <swiper autoplay="{{autoplay}}" bindchange="swiper">
+            <block wx:for="{{goods.small_images}}" wx:key="swiper">
+                <swiper-item>
+                    <image src="{{item}}" class="slide-image" />
+                </swiper-item>
+            </block>
+        </swiper>
+        <view class="radio" wx:if="{{showTips && isShowCoupon}}">
+            <image src="{{imageSrc}}"></image>
+            <text>{{radioText}}</text>
+        </view>
+        <view class="draw-image" bindtap='getQrcode'>生成分享图</view>
+        <view class="current">{{current}}/{{swiper_all}}</view>
+    </view>
+    <view class="goods-detail">
+        <view class="price-num">
+            <text class="now-price">¥<text style="font-size:48rpx;font-weight:900;margin-left:10rpx">{{isShowCoupon ? goods.coupon_price : goods.price}}</text></text>
+            <text class="old-price" wx:if="{{isShowCoupon}}">{{shopType=='pinduoduo'?'拼团价':'京东价'}} ¥{{goods.price}}</text>
+            <text class="sell-num" wx:if="{{goods.sale_num!=0}}">销量 {{goods.sale_num}}件</text>
+        </view>
+        <text class='goods-name'><text class="topCate">{{shopType=='pinduoduo'?'拼':'JD'}}</text>{{goods.title}}</text>
+    </view>
+    <view class="item-list">
+        <view class="items" wx:if="{{isShowCoupon}}" style="margin-bottom:4rpx">
+            <view class="title">优惠</view>
+            <view class="coupon-price" wx:if="{{goods.coupon_money!='0'}}">
+                <view class="coupon-price-text">
+                    优惠券
+                    <text class="stress">{{goods.coupon_money}}</text> 元
+                </view>
+                <image src="../../resource/page/goodsDetail/ticket.png"></image>
+            </view>
+            <view class="coupon-end-time">{{couponEndTime}}</view>
+        </view>
+        <view class="items">
+            <view class="title">奖励</view>
+            <view class="commission" bindtap='showTips'>
+                <view class='commission-price'>
+                    <text class="{{level<5 ?'active':'default'}}">推广员奖励{{goods.commission}}元</text>
+                    <text class="{{level==5 ?'active':'default'}}" wx:if="{{level>0}}">团长奖励{{goods.group_leader_commission}}元</text>
+                </view>
+                <view class="commission-desc">
+                    <block wx:if="{{level<1}}">
+                        成为推广员，购买或分享可获得推广员奖励{{goods.commission}}元噢
+                    </block>
+                    <block wx:elif="{{level<5}}">
+                        推广员升级为团长，不仅能获得团长奖励，还有更多收益
+                    </block>
+                    <block wx:else>
+                        团队成员越多，赚的越多
+                    </block>
+                </view>
+            </view>
+        </view>
+    </view>
+	<view class="load-more" hidden='{{hideLoadMore==false && shopType=="jingdong" ? false : true}}'>上拉查看图文详情</view>
+    <view class="goods-desc">
+        <block wx:if="{{shopType=='pinduoduo'}}">
+            <view class="intro">{{goods.intro}}</view>
+        </block>
+        <block wx:else>
+			<view class="intro-images" mode="widthFix">
+				<block wx:for="{{desc_images}}" wx:key="swiper" wx:for-item="image">
+				<image src="{{image}}" mode="widthFix"></image>
+				</block>
+			</view>
+        </block>
+    </view>
+
+    <!--购买按钮-->
+    <view class='share' wx:if="{{isShowCoupon!=-1}}">
+        <view class='back-home' bindtap="backHome">
+            <image src="../../resource/icon/index.png"></image>
+            首页
+        </view>
+        <block wx:if="{{isShowCoupon}}">
+            <view class='btn-share'>
+                <button open-type='share' plain='true'>
+                    分享可赚{{level
+                    <5?goods.commission:goods.group_leader_commission}}元 </button>
+            </view>
+            <view class='btn-buy' bindtap="openTo">
+                <block wx:if="{{level<5}}">
+                    <text>自买可省{{totalFavored}}元</text>
+                </block>
+                <block wx:else>
+                    <text>自买可省{{totalFavored}}元</text>
+                </block>
+            </view>
+        </block>
+        <block wx:else>
+            <view class='btn-buy no-coupon' bindtap="openTo">
+                <text>优惠券已抢完，需原价购买</text>
+            </view>
+        </block>
+    </view>
+    <view class="modal-box" hidden="{{flag}}" catchtouchmove="{{true}}">
+
+        <view class="modal-content" style="height:{{canvasHeight}}px;margin-top:{{modalMarginTop}}">
+            <canvas canvas-id='share-image' disable-scroll="{{true}}" bindtouchmove="touchMove"></canvas>
+        </view>
+
+        <view class="footer">
+            <view class='footer-btn footer-close' style="line-height:{{curr_height*0.07}}px" bindtap="hide">
+                关闭
+            </view>
+            <view class='footer-btn footer-copy' style="line-height:{{curr_height*0.07}}px" bindtap="copyString">
+                复制文案
+            </view>
+            <view class='footer-btn footer-save' style="line-height:{{curr_height*0.07}}px" bindtap="saveCanvas">
+                保存图片
+            </view>
+            <view class='footer-btn footer-show' style="line-height:{{curr_height*0.07}}px" bindtap="showCanvas">
+                查看大图
+            </view>
+        </view>
+    </view>
+</view>

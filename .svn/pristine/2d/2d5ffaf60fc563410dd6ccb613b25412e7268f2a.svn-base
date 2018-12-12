@@ -1,0 +1,82 @@
+<!--pages/my/my.wxml-->
+<view class="container">
+    <view class="show-background"></view>
+    <view class='content'>
+        <view class="user-info">
+            <view class='user-cont' hidden="{{!isLogin}}">
+                <view class='user-phone'>
+                    <image src='{{userInfo.avatar}}'></image>
+                </view>
+                <view class='user-text'>
+                    <text class='user-name'>{{userInfo.nickname}}</text>
+                    <view class='v-er'>
+                        <text class="v_url">{{userInfo.level_name}}</text>
+                    </view>
+                </view>
+                <view class='user-detail' bindtap="gotoIncome">
+                    <view class='item'>
+                        <view class='detail-title'>今日预估(元)</view>
+                        <view class='detail-info'>{{userInfo.today_paid_commission}}</view>
+                    </view>
+                    <view class='item'>
+                        <view class='detail-title'>今日订单(笔)</view>
+                        <view class='detail-info'>{{userInfo.today_order_num}}</view>
+                    </view>
+                    <view class='item'>
+                        <view class='detail-title'>本月预估(元)</view>
+                        <view class='detail-info'>{{userInfo.current_month_paid_commission}}</view>
+                    </view>
+                </view>
+            </view>
+            <view class='user-cont' hidden="{{isLogin}}">
+                <view class='user-phone'>
+                    <image src="{{userInfo.avatar}}"></image>
+                </view>
+                <view class='user-text'>
+                    <text class='user-name'>未登录</text>
+                    <button class="user-name login" bindtap='userLogin'>点击登录</button>
+                </view>
+				<view class='user-detail'>
+				</view>
+            </view>
+        </view>
+        <view class='menu'>
+            <view class='us-link-lis' hidden="{{!isLogin}}" bindtap="gotoIncome">
+                <image class='nav-icon' src='../../resource/images/us-icon01.png'></image>
+                <text class='tit-text-us'>推广收益</text>
+                <image class='right-icon' src='../../resource/images/us-iconlink.png'></image>
+            </view>
+            <view class='us-link-lis' hidden="{{!isLogin}}" bindtap='orderDetail'>
+                <image class='nav-icon' src='../../resource/images/us-icon07.png'></image>
+                <text class='tit-text-us'>推广订单</text>
+                <image class='right-icon' src='../../resource/images/us-iconlink.png'></image>
+            </view>
+            <view class='us-link-lis row-mb' hidden="{{!isLogin}}" bindtap='gotoTeam'>
+                <image class='nav-icon' src='../../resource/images/us-icon02.png'></image>
+                <text class='tit-text-us'>我的团队</text>
+                <image class='right-icon' src='../../resource/images/us-iconlink.png'></image>
+            </view>
+            <view class='us-link-lis' bindtap='gotoHistory'>
+                <image class='nav-icon' src='../../resource/images/us-icon06.png'></image>
+                <text class='tit-text-us'>浏览记录</text>
+                <image class='right-icon' src='../../resource/images/us-iconlink.png'></image>
+            </view>
+            <view class='us-link-lis'>
+                <image class='nav-icon' src='../../resource/images/us-icon03.png'></image>
+                <button open-type='share' plain="true" class='tit-text-us'>分享小程序</button>
+                <image class='right-icon' src='../../resource/images/us-iconlink.png'></image>
+            </view>
+
+            <view class='us-link-lis row-mb'>
+                <image class='nav-icon' src='../../resource/images/us-icon04.png'></image>
+                <button open-type='contact' plain="true" session-from="hello world" class='tit-text-us'>客服中心</button>
+                <image class='right-icon' src='../../resource/images/us-iconlink.png'></image>
+            </view>
+			<view class='us-link-lis row-mb' hidden="{{!isLogin}}">
+                <image class='nav-icon' src='../../resource/images/us-icon08.png'></image>
+                <button plain="true" bindtap='goSetting' class='tit-text-us'>设置</button>
+                <image class='right-icon' src='../../resource/images/us-iconlink.png'></image>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,24 @@
+<!--pages/setting/setting.wxml-->
+<view class="container">
+    <!--链接列表-->
+    <view class='us-link'>
+        <view class='item'>
+            <view class="title">手机号码</view>
+            <view class="desc">
+                <text>{{userInfo.mobile}}</text>
+                <text class="icon">〉</text>
+            </view>
+        </view>
+        <view class='item' bindtap="goToCard">
+            <view class="title">支付宝账号</view>
+            <view class="desc">
+                <text>{{userInfo.bank_name}}{{userInfo.bank_account}}</text>
+                <text class="icon">〉</text>
+            </view>
+        </view>
+        <view class='us-link-lis' bindtap="logout">
+            退出登录
+        </view>
+		<view class='version'>v1.0.5</view>
+    </view>
+</view>

@@ -1,0 +1,14 @@
+<!--pages/login/login.wxml-->
+<view class='container'>
+<form bindsubmit='submit'>
+	<view class="input-group">
+		<input name="username" bindinput='loginUsername' placeholder='请输入手机号码'></input>
+		<input name="password" password='{{true}}' bindinput='loginPassword' placeholder='请输入密码'></input>
+		<!-- <view class="forget">忘记密码？</view> -->
+	</view>
+	<view class='btn-group'>
+		<button bindtap='userLogin' style="color:#fff;background:#ff1839;">登录</button>
+		<button bindtap='goToRegister'>注册</button>
+	</view>
+	</form>
+</view>

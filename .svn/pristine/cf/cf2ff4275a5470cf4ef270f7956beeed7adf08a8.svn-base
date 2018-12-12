@@ -1,0 +1,28 @@
+<!--pages/withdrawals/withdrawals.wxml-->
+<view class='container'>
+    <view class="money">
+        <view class="title">账户余额：</view>
+        <view class="withdraw-money">¥{{account_balance}}</view>
+        <view class="desc">可提现金额{{account_balance}}元</view>
+    </view>
+    <view class="card-info">
+        <image src='../../resource/images/alipay-select.png'></image>
+        <view class="card-desc">
+            <text>支付宝</text>
+            <text>{{bank_account}}</text>
+        </view>
+    </view>
+    <button bindtap="withdrawals">提现</button>
+    <view class="presentrecord" bindtap='goToPresentrecord'>提现记录</view>
+	<!--  弹窗输入短信验证  -->
+    <view class='modal-sms' hidden="{{isHide}}">
+		<view class="code">
+			<view class="code-title">验证码已发送至18368182313</view>
+			<view class="sms">
+				<input bindinput='regCode' name="sms_code" placeholder='请输入验证码'></input>
+				<view class="timer" bindtap='send'>{{countdown}}</view>
+			</view>
+			<button class='confirm' bindtap='withdrawals'>确认提现</button>
+		</view>
+    </view>
+</view>

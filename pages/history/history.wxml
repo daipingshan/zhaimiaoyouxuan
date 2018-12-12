@@ -1,0 +1,39 @@
+<!--pages/search/search.wxml-->
+<view class="container">
+    <!--  商品列表  -->
+    <view class="history-tips">
+        <text>历史浏览记录里保存的是当时浏览的价格信息，价格随时都有可能调整，请以打开的商品详情信息为准，谢谢理解！</text>
+    </view>
+    <view class='goods-list' wx:if="{{goods}}">
+
+        <view class="empty" wx:if="{{isEmpty}}">暂时没有浏览记录~</view>
+        <block wx:for="{{goods}}" wx:key="index">
+            <view class="goods-item" bindtap='gotoDetail' data-id="{{item.goods_id}}" style="{{level>0?'height:680rpx':''}}">
+                <view class='goods-img'>
+                    <image src='{{item.goods_thumbnail_url}}'></image>
+                </view>
+                <view class="goods-detail">
+
+                    <view class='goods-name'>
+                        <text class="topCate">{{item.shop_type=='pinduoduo'?'拼':'JD'}}</text>
+                        <text>{{item.goods_name}}</text>
+                    </view>
+                    <view class="gain-leader" wx:if="{{level>0}}">奖励 ¥{{level>4 ? item.group_leader_commission :item.commission}}</view>
+                    <view class="price-num" style="margin-top:{{currentTab==0 && level<=0 ? '40rpx':'10rpx'}}">
+                        <text class="now-price">¥<text style="font-size:40rpx;margin-right:5rpx;">{{item.after_coupon_price}}</text></text>
+						<view class="ticket-price" wx:if="{{item.coupon_discount!='0'}}">
+                            <text>¥{{item.coupon_discount}}</text>
+                            <image src="../../resource/page/index/ticket.png"></image>
+                        </view>
+                    </view>
+                    <view class="goods-extend">
+						<view class="gain">{{item.min_group_price}}</view>
+
+                        <text class="sell-num">已售{{item.sold_quantity}}件</text>
+                        
+                    </view>
+                </view>
+            </view>
+        </block>
+    </view>
+</view>

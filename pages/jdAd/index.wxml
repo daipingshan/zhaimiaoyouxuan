@@ -1,0 +1,92 @@
+<!--pages/jdItem/item.wxml-->
+<block wx:if="{{time_status == 'before'}}">
+  <view class='no-begin' style='min-height:{{min_height}}rpx'>
+    <view class='img'>
+      <image src='/resource/page/jdAd/jd-818.png'></image>
+    </view>
+    <view class='time-down time-font'>
+      {{day}}<text>天</text>{{hour}}<text>时</text>{{minute}}<text>分</text>{{second}}<text>秒</text>
+    </view>
+    <view class='wei-xin'>
+      想获取更多免单,可以添加客服微信
+    </view>
+    <view class='copy-weixin'>
+      【QTKF01】
+      <view class='copy-weixin-btn' bindtap='copyWeiXin'>
+        复制
+      </view>
+    </view>
+  </view>
+</block>
+<block wx:else>
+  <view class='jd-item'>
+    <view class='top-img'>
+      <image src='/resource/page/jdAd/top-image-818.png'></image>
+       <navigator url="../webView/webView?url=https://jd.zhaimiaosh.com/Touch/jdExplain" class='gui-ze'>
+      </navigator>
+      <navigator url="../payinfo/payinfo" class='free-item'>
+      </navigator>
+    </view>
+    <block wx:if="{{time_status == 'ing'}}">
+    <view class='item-list'>
+      <view class='goods-list' wx:if="{{goods}}">
+        <block wx:for="{{goods}}" wx:key="index">
+          <view class="goods-item" bindtap='gotoUrl' data-id="{{item.num_iid}}" data-jid="{{item.jid}}" data-url="{{item.click_url}}">
+            <view class='goods-img'>
+              <image src='{{item.pic_url}}'></image>
+            </view>
+            <view class="goods-detail">
+              <view class='goods-name'>
+                <text class="topCate">JD</text>
+                <text>{{item.title}}</text>
+            </view>
+              <view class='goods-coupon' wx:if="{{item.coupon_money!='0'}}">
+                <text>￥{{item.coupon_money}}</text>
+                <image src="/resource/page/index/ticket.png"></image>
+              </view>
+              <view class="price-num">
+                <text class="now-price">￥<text style="font-size:40rpx;margin-right:5rpx;">{{item.coupon_price}}</text></text>
+                <view class="subsidy_money" wx:if="{{item.subsidy_money!='0'}}">
+                  宅喵补贴 {{item.subsidy_money}}
+                </view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+    </block>
+    <block wx:else>
+     <view class='item-list'>
+      <view class="after-info">
+        活动已结束，如果还有未申请免单的订单，请点击上方申请免单操作！
+      </view>
+     </view>
+    </block>
+  </view>
+  <view class='share' bindtap='getShare'>
+    <image src='/resource/page/jdAd/share.png'></image>
+  </view>
+  <view class='back-home' bindtap='backTop'>
+    <image src='/resource/page/jdAd/back-top.png'></image>
+  </view>
+  <view class="modal-box" hidden="{{flag}}">
+    <view class="modal-content" style="height:{{canvasHeight}}px;margin-top:{{modalMarginTop}}">
+      <canvas canvas-id='share-image' disable-scroll="{{true}}" bindtouchmove="touchMove"></canvas>
+    </view>
+    <view class="footer">
+      <view class='footer-btn footer-close' style="line-height:{{curr_height*0.07}}px" bindtap="hide">
+        关闭
+      </view>
+      <view class='footer-btn footer-copy' style="line-height:{{curr_height*0.07}}px" bindtap="copyString">
+        复制文案
+      </view>
+      <view class='footer-btn footer-save' style="line-height:{{curr_height*0.07}}px" bindtap="saveCanvas">
+        保存图片
+      </view>
+      <view class='footer-btn footer-show' style="line-height:{{curr_height*0.07}}px" bindtap="showCanvas">
+        查看大图
+      </view>
+    </view>
+  </view>
+</block>

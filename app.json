@@ -1,0 +1,63 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/user/user",
+    "pages/goodsDetail/goodsInfo",
+    "pages/team/team",
+    "pages/income/income",
+    "pages/orderdetails/orderdetails",
+    "pages/withdrawals/withdrawals",
+    "pages/diaryaccount/diaryaccount",
+    "pages/presentrecord/presentrecord",
+    "pages/setaccount/setaccount",
+    "pages/menu/menu",
+    "pages/promotion/promotion",
+    "pages/promoters/promoters",
+    "pages/about/about",
+    "pages/goSearch/search",
+    "pages/history/history",
+    "pages/specialGoods/special",
+    "pages/setting/setting",
+    "pages/explain/explain",
+    "pages/cards/cards",
+    "pages/login/login",
+    "pages/register/register",
+    "pages/webView/webView",
+    "pages/jdAd/index",
+    "pages/payinfo/payinfo"
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "宅喵优选",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": true,
+    "backgroundColor": "#f9f7fb"
+  },
+  "tabBar": {
+    "color": "#929292",
+    "backgroundColor": "#ffffff",
+    "selectedColor": "#ff1849",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "resource/icon/index.png",
+        "selectedIconPath": "resource/icon/index-select.png"
+      },
+      {
+          "pagePath": "pages/jdAd/index",
+          "text": "京东免单",
+          "iconPath": "resource/icon/818.png",
+          "selectedIconPath": "resource/icon/818-select.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "resource/icon/user.png",
+        "selectedIconPath": "resource/icon/user-select.png"
+      }
+    ]
+  }
+}

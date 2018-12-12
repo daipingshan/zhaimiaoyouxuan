@@ -1,0 +1,32 @@
+<!--pages/presentrecord/presentrecord.wxml-->
+<view class='container'>
+  <view class='cord-item'>
+    <view class="empty" hidden="{{listLen != 0}}">暂无提现记录~</view>
+    <block wx:for="{{list}}">
+      <view class='cord-list'>
+        <text class='wx-num'>结算至：{{item.bank_account}} </text>
+        <view class='js-money'>
+          <view class='state-text'>
+            <block wx:if="{{item.settle_time == 0}}">
+              <image class='js-img' src='../../resource/images/tg-wjs.png'></image>
+            </block>
+            <block wx:else>
+              <image class='js-img' src='../../resource/images/tg-yjs.png'></image>
+            </block>
+            <text class='js-text yjs-text'>{{item.status_view}}</text>
+          </view>
+          <text class='jine'>￥{{item.money}}</text>
+          <text class="cause" wx:if="{{item.remark != ''}}">{{item.remark}}</text>
+        </view>
+        <view class='tx-time'>
+          <text class='time-end'>{{item.add_time_trans}} 申请</text>
+          <block wx:if="{{item.settle_time == 0}}">
+          </block>
+          <block wx:else>
+            <text class='time-begin'>{{item.settle_time_trans}} 结算</text>
+          </block>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

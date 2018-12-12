@@ -1,0 +1,310 @@
+// pages/search/search.js
+const app = getApp();
+const base = app.globalData.base;
+var common = require("../../utils/common.js")
+Page({
+  data: {
+    order_sn: '',
+    user_info: {},
+    order_list: [],
+    page: 1,
+    isLast: false,
+    token: '',
+    invite_code: 'zhaimiaoshenghuo',
+    total_order_num: 100,
+    show_order_num:true,
+  },
+  onLoad: function (options) {
+    wx.setNavigationBarTitle({
+      title: '申请免单'
+    });
+    if (options.type) {
+      this.setData({
+        item_cate: options.type
+      })
+    }
+    //设置用户公共数据
+    var userCommon = new common.UserCommon(this, options);
+    userCommon.setToken();
+    if (!userCommon.wxObj.token) {
+      this.userLogin();
+    } else {
+      this.setData({
+        token: userCommon.wxObj.token
+      })
+      userCommon.setUserInfo();
+      userCommon.setInviteCode();
+      if (userCommon.wxObj.invite_code) {
+        this.setData({
+          invite_code: userCommon.wxObj.invite_code
+        })
+      }
+      if (userCommon.wxObj.userInfo) {
+        this.setData({
+          user_info: userCommon.wxObj.userInfo
+        })
+      }
+      this.getData();
+    }
+  },
+
+  //设置订单编号
+  setOrderSn: function (e) {
+    this.setData({
+      order_sn: e.detail.value
+    })
+  },
+
+  //提交订单
+  submitOrder() {
+    var that = this;
+    if (!this.data.user_info.user_id) {
+      wx.showToast({
+        icon: "none",
+        title: '请先登录！',
+      });
+      setTimeout(function () {
+        that.redirectLogin();
+      }, 2000);
+      return false;
+    }
+    if (!this.data.user_info.bank_account) {
+      wx.showToast({
+        icon: "none",
+        title: '请先设置提现账号！',
+      });
+      setTimeout(function () {
+        that.redirectLogin();
+      }, 2000);
+      return false;
+    }
+    if (!that.data.order_sn) {
+      wx.showToast({
+        icon: "none",
+        title: '请输入订单编号！',
+      });
+      return false;
+    }
+    wx.request({
+      url: base + '/Jd/addSubsidyOrder',
+      data: { order_sn: that.data.order_sn, token: that.data.token },
+      success(res) {
+        if (res.data.code == 'success') {
+          that.setData({
+            order_sn: '',
+            order_list:[],
+            page: 1,
+            isLast: false,
+          })
+          wx.showToast({
+            icon: "none",
+            title: '申请成功，等待平台审核',
+            duration: 2000,
+          });
+          that.getData();
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 3000
+          })
+        }
+      },
+      fail(err) {
+        console.log(err)
+      }
+    })
+  },
+  //获取团队免单数量
+  getOrderNum() {
+    var that = this;
+    if (!this.data.user_info.user_id) {
+      wx.showToast({
+        icon: "none",
+        title: '请先登录！',
+      });
+      setTimeout(function () {
+        that.redirectLogin();
+      }, 2000);
+      return false;
+    }
+    wx.request({
+      url: base + '/Jd/getGroupOrderNum',
+      data: { token: that.data.token },
+      success(res) {
+        if (res.data.code == 'success') {
+          that.setData({
+            total_order_num: res.data.data.total_order_num,
+            show_order_num:false
+          })
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      },
+      fail(err) {
+        console.log(err)
+      }
+    })
+  },
+  userLogin() {
+    var that = this;
+    wx.showLoading({
+      title: '正在登录',
+    })
+    wx.login({
+      success: res => {
+        that.login(res.code);
+      }
+    });
+  },
+  login(code) {
+    var that = this, data = {};
+    data.mini_program_code = code;
+    wx.request({
+      url: base + '/Public/loginWithMiniProgramOpenid',
+      method: 'POST',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: data,
+      success(res) {
+        wx.hideLoading();
+        var code = res.data.code;
+        if (code != 'success') {
+          wx.navigateTo({
+            url: '../login/login',
+          })
+          return false;
+        }
+        that.setData({
+          token: res.data.data.token,
+        })
+        wx.setStorageSync('token', res.data.data.token);
+        that.getUserInfo();
+      }
+    })
+  },
+  getUserInfo() {
+    var that = this, data = {};
+    if (this.data.token) {
+      data.token = this.data.token;
+    } else {
+      return;
+    }
+    var time = new Date();
+    var tnow = time.getTime();
+    var preTime = wx.getStorageSync('getDetail');
+    if (preTime > tnow && this.data.userInfo) {
+      return false;
+    }
+    wx.request({
+      url: base + '/User/index',
+      data: data,
+      success(res) {
+        var userInfo = res.data.data;
+        var code = res.data.code;
+        if (code == 'success') {
+          wx.setStorageSync('userInfo', userInfo);
+          wx.setStorageSync('invite_code', userInfo.invite_code);
+          wx.setStorage({
+            key: 'getDetail',
+            data: tnow + 600000
+          })
+          that.setData({
+            user_info: userInfo,
+            invite_code: userInfo.invite_code
+          })
+          that.getData();
+        } else {
+          wx.showToast({
+            icon: "none",
+            title: res.data.msg
+          })
+        }
+      }
+    })
+  },
+  redirectLogin(){
+    wx.navigateTo({
+      url: '../login/login',
+    })
+  },
+  redirectSetAccount(){
+    wx.navigateTo({
+      url: '../setaccount/setaccount'
+    })
+  },
+  saveBankAccount() {
+    var that = this;
+    if (!this.data.user_info.user_id) {
+      wx.showToast({
+        icon: "none",
+        title: '请先登录！',
+      });
+      setTimeout(function () {
+        that.redirectLogin();
+      }, 2000);
+      return false;
+    }
+    that.redirectSetAccount();
+  },
+  getData() {
+    wx.showLoading({
+      title: '正在加载',
+    })
+    var that = this;
+    var data = { token: this.data.token, page: this.data.page };
+    wx.request({
+      url: base + '/Jd/getOrderList',
+      data: data,
+      success(res) {
+        wx.hideLoading();
+        if (res.data.code == 'success') {
+          var order_list = that.data.order_list;
+          var order_data = res.data.data;
+          if (order_data.length<20){
+            that.setData({
+              isLast: true,
+            })
+          }
+          if (order_data.length > 0) {
+            order_list = order_list.concat(order_data);
+            that.setData({
+              order_list: order_list,
+            })
+          }
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 2000
+          })
+        }
+      },
+      fail(err) {
+        console.log(err)
+      }
+    })
+  },
+  onReachBottom() {
+    var page = this.data.page
+    if (this.data.isLast) {
+      wx.showToast({
+        title: '暂无更多数据',
+        icon: 'none',
+        duration: 2000
+      })
+    } else {
+      var page = this.data.page;
+      page += 1;
+      this.setData({
+        page: page
+      })
+      this.getData();
+    }
+  },
+})

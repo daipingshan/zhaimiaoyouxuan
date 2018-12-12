@@ -1,0 +1,6 @@
+{
+	"enablePullDownRefresh": true,
+	"backgroundColor": "#ff1849",
+	"backgroundTextStyle":"light",
+	"disableScroll": false
+}

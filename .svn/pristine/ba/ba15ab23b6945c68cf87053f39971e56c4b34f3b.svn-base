@@ -1,0 +1,17 @@
+<!--pages/register/register.wxml-->
+<view class="container">
+    <form bindsubmit='submit'>
+        <input name="mobile" bindinput='regMobile'  placeholder='请输入手机号码'></input>
+        <view class="code">
+            <input bindinput='regCode' name="sms_code" placeholder='请输入验证码'></input>
+            <button disabled='{{cding}}' class="send {{cding?'disable': ''}}" bindtap="send">获取验证码 {{countdown}}</button>
+        </view>
+		<view class="voice-code" bindtap='sendVoice' wx:if="{{isShowVoice}}">
+			接收不到短信验证码？点击获取语音验证码
+		</view>
+		<input name="password" password='{{true}}' bindinput='regPassword' placeholder='请输入密码'></input>
+		<input name="confirm_password" password='{{true}}' bindinput='regCPassword' placeholder='请再次确认密码'></input>
+		<input name="invite_code" bindinput='regInviteCode'  placeholder='请输入邀请码' wx:if="{{hasInviteCode==false}}"></input>
+        <button bindtap='userRegister'>完成注册</button>
+    </form>
+</view>

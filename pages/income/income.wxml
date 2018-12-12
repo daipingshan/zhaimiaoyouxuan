@@ -1,0 +1,99 @@
+<!--pages/income/income.wxml-->
+<view class='container'>
+    <view class="header">
+        <view class="header-title">
+            <text>已直接邀请{{invite_a_num}}人，间接邀请{{invite_b_num}}人</text>
+        </view>
+        <view class="header-info">
+            <view class='header-info-item'>
+                <view class='header-item-title'>累计收益</view>
+                <view class='header-item-content'>¥ {{income.total_settle_commission}}</view>
+            </view>
+            <view class='header-info-item'>
+                <view class='header-item-title'>可提现金额</view>
+                <view class='header-item-content'>¥ {{userInfo.account_balance}}</view>
+            </view>
+            <view class='header-info-item'>
+                <button bindtap='withdrawals'>提现</button>
+                <text bindtap='diaryaccount'>流水明细</text>
+            </view>
+        </view>
+    </view>
+
+    <view class='content-day'>
+        <view class="content-tab">
+            <view class="content-tab-item today {{hideTab?'active':''}}" data-current="0" bindtap="clickTab">今日</view>
+            <view class="content-tab-item yesterday {{!hideTab?'active':''}}" data-current="1" bindtap="clickTab">昨日</view>
+        </view>
+        <view class="content-detail">
+            <view class='content-data today' hidden='{{!hideTab}}' bindtap='goToOrderDetailToday'>
+                <view class='content-item'>
+                    <view class='item-info'>{{income.today_order_num}} (笔)</view>
+                    <view class='item-title'>今日订单数</view>
+                </view>
+                <view class='content-item'>
+                    <view class='item-info'>¥ {{income.today_paid_commission}}</view>
+                    <view class='item-title'>今日预估</view>
+                </view>
+                <view class='content-item'>
+                    <view class='item-info'>¥ {{income.today_settle_commission}}</view>
+                    <view class='item-title'>今日结算</view>
+                </view>
+            </view>
+            <view class='content-data yesterday' hidden='{{hideTab}}' bindtap='goToOrderDetailYesterday'>
+                <view class='content-item'>
+                    <view class='item-info'>{{income.yesterday_order_num}} (笔)</view>
+                    <view class='item-title'>昨日订单数</view>
+                </view>
+                <view class='content-item'>
+                    <view class='item-info'>¥ {{income.yesterday_paid_commission}}</view>
+                    <view class='item-title'>昨日预估</view>
+                </view>
+                <view class='content-item'>
+                    <view class='item-info'>¥ {{income.yesterday_settle_commission}}</view>
+                    <view class='item-title'>昨日结算</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="content-month">
+        <view class='month' bindtap='goToOrderDetailThisMonth'>
+            <view class='month-title'>本月收益</view>
+            <view class='month-detail'>
+                <view class='month-item'>
+                    <view class='item-title'>本月订单数</view>
+                    <view class='item-info'>{{income.current_month_order_num}} (笔)</view>
+                </view>
+                <view class='month-item'>
+                    <view class='item-title'>本月成交预估</view>
+                    <view class='item-info'>¥ {{income.current_month_paid_commission}}</view>
+
+                </view>
+                <view class='month-item'>
+                    <view class='item-title'>本月结算</view>
+                    <view class='item-info'>¥ {{income.current_month_settle_commission}}</view>
+                </view>
+            </view>
+        </view>
+		<view class='month' bindtap='goToOrderDetailLastMonth'>
+            <view class='month-title'>上月收益</view>
+            <view class='month-detail'>
+                <view class='month-item'>
+                    <view class='item-title'>上月订单数</view>
+                    <view class='item-info'>{{income.before_month_order_num}} (笔)</view>
+                </view>
+                <view class='month-item'>
+                    <view class='item-title'>上月成交预估</view>
+                    <view class='item-info'>¥ {{income.before_month_paid_commission}}</view>
+                </view>
+                <view class='month-item'>
+                    <view class='item-title'>上月结算</view>
+                    <view class='item-info'>¥ {{income.before_month_settle_commission}}</view>
+                </view>
+            </view>
+        </view>
+    </view>
+	<view class='explain' bindtap='showRule'>
+		名词解释
+	</view>
+</view>

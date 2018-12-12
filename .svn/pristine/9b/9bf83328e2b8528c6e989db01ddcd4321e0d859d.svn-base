@@ -1,0 +1,160 @@
+
+page {
+    width: 100%;
+    background: #f7f7fa;
+}
+.history-tips {
+    font-size: 24rpx;
+    background: #fff7dc;
+    padding: 10rpx 15rpx;
+}
+
+.empty {
+    text-align: center;
+    width: 100%;
+    background: #f7f7fa;
+    font-size: 28rpx;
+    padding-top: 20px;
+    color: #808080;
+}
+.goods-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    background: #f1f1f1;
+    justify-content: space-between;
+}
+
+.goods-item {
+    height: 640rpx;
+    width: 49.7%;
+    flex-wrap: wrap;
+    background: #fff;
+    border-bottom: 4rpx solid #f1f1f1;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+}
+
+.goods-img image {
+    margin: 18rpx;
+    height: 340rpx;
+    width: 340rpx;
+}
+
+.goods-detail {
+    padding: 15rpx;
+    width: auto;
+    float: right;
+}
+.goods-img {
+    float: none;
+    width: auto;
+    display: flex;
+    justify-content: space-around;
+    padding: 16rpx;
+}
+.goods-img image {
+    margin: 0;
+	padding: 0;
+    height: 340rpx;
+    width: 340rpx;
+}
+
+.goods-name {
+    font-size: 28rpx;
+    height: 120rpx;
+    display: block;
+}
+
+.goods-name .topCate {
+    color: #fff;
+    background: #fc4a54;
+    font-size: 22rpx;
+    line-height: 35rpx;
+    width: 55rpx;
+    display: inline-block;
+    text-align: center;
+    border-radius: 40rpx;
+    float: left;
+    margin-top: 2rpx;
+    margin-right: 10rpx;
+}
+
+.gain {
+    height: 40rpx;
+    line-height: 40rpx;
+    color: #8c8c8c;
+    display: inline-block;
+    font-weight: 350;
+    text-decoration: line-through;
+}
+
+.gain-leader {
+    margin-top: 10rpx;
+    height: 40rpx;
+    font-size: 24rpx;
+    line-height: 40rpx;
+    color: #ff6232;
+    border: 1px solid #ff6232;
+    padding: 0 10rpx;
+    display: inline-block;
+    text-align: center;
+    border-radius: 10rpx;
+}
+
+.price-num {
+    margin-top: 10rpx;
+    position: relative;
+    height: 40rpx;
+    font-size: 24rpx;
+    line-height: 40rpx;
+    color: #808080;
+}
+
+.now-price {
+    color: red;
+}
+
+.sell-num {
+    height:40rpx;
+	line-height:40rpx;
+	color:#8c8c8c;
+	display:inline-block;
+	position:absolute;
+	right:0;
+	font-weight:350;
+}
+
+.goods-extend {
+    position: relative;
+    margin-top: 10rpx;
+    height: 40rpx;
+    font-size: 26rpx;
+    font-weight: 500;
+    line-height: 40rpx;
+    color: #8c8c8c;
+    width: 100%;
+}
+
+.ticket-price {
+    float: right;
+    color: #fff;
+    position: relative;
+}
+
+.ticket-price text {
+    z-index: 10;
+    position: absolute;
+    left: -70rpx;
+    color: #ff1849;
+    text-align: left;
+}
+
+.price-num image {
+    position: absolute;
+    height: 40rpx;
+    width: 130rpx;
+    right: 0px;
+    z-index: 1;
+}

@@ -1,0 +1,88 @@
+<!--pages/myPayInfo.wxml-->
+<view class='pay-info'>
+  <view class='box user-info'>
+    <view class='user-img'>
+      <view wx:if="{{user_info.avatar}}">
+        <image src='{{user_info.avatar}}'></image>
+      </view>
+      <view wx:else>
+        <image src='/resource/images/img_avatar_default.png'></image>
+      </view>
+    </view>
+    <view class='nick-name'>
+      <view wx:if="{{user_info.nickname}}">
+        <text>{{user_info.nickname}}</text>
+      </view>
+      <view wx:else>
+        <text>宅喵</text>
+      </view>
+    </view>
+    <view class='user-form'>
+      <view class='my-info'>我的资料</view>
+      <view class='subsidy-statement'>为了保证您能收到平台补贴金，
+        <text>请务必确认支付宝账号与真实姓名填写正确</text>
+      </view>
+      <view wx:if="{{user_info.bank_account}}">
+        <view class='user-name info'>
+          真实姓名：{{user_info.bank_account_real_name}}
+        </view>
+        <view class='alipay info'>
+          支付宝账号：{{user_info.bank_account}}
+        </view>
+        <view class='mobile info mb50'>
+          手机号码：{{user_info.mobile}}
+        </view>
+        <view style='width:100%;height:50rpx'></view>
+        <view class='update' bindtap='saveBankAccount'>
+          修改
+        </view>
+      </view>
+      <view wx:else>
+        <view class='save' bindtap='saveBankAccount'>
+          点此设置提现信息
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="box submit-order">
+    <view class='order-sn'>
+      <input placeholder='请输入订单编号' bindinput="setOrderSn" type='number' value='{{order_sn}}'></input>
+    </view>
+    <view class='submit' bindtap='submitOrder'>
+      申请补贴
+    </view>
+  </view>
+  <view class='box order-list'>
+    <view class='user-form'>
+      <view class='my-info'>订单详情</view>
+      <view class='order-list-info border-bottom'>
+        <view>订单编号</view>
+        <view>订单金额</view>
+        <view>补贴金额</view>
+        <view>订单状态</view>
+      </view>
+      <view class='order-list-box' wx:if="{{order_list}}">
+        <block wx:for="{{order_list}}" wx:key="index">
+          <view class='order-list-info border-bottom'>
+            <view>{{item.order_sn}}</view>
+            <view>{{item.total_money}}</view>
+            <view>{{item.subsidy_money}}</view>
+            <view>{{item.status_view}}</view>
+          </view>
+        </block>
+      </view>
+      <view class="order-explain">
+      订单有效性从商品官方获取，会有T+1天的延迟奥，当前的有效性为预判结果，最终数据以官方为准，请大家谅解!
+      </view>
+    </view>
+  </view>
+  <view class='tip'>
+    <view class='line'>
+        <view>温馨提示</view>
+    </view>
+    <view>1.平台补贴金以活动商品页面所展示的平台补贴金额为准</view>
+    <view>2.补贴金将在6月28日-7月05日期间，汇入您提交的支付宝账号中，并发放打款信息给您提交的手机号</view>
+    <view>3.所有奖励以最终有效订单为准，退货订单不统计在内（有效订单定义请见活动说明页） </view>
+    <view>如您还有其他问题，可关注宅喵生活官方微信服务号【宅喵生活购物APP】，或通过微信id  【zaimiao8 】 与官方客服电话 400-0998433咨询 </view>
+  </view>
+</view>

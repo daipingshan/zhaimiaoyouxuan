@@ -1,0 +1,14 @@
+<view class="container">
+    <form bindsubmit='submit'>
+        <input name="bank_account_real_name" placeholder='请输入收款人真实姓名' value="{{bank_account_real_name}}"></input>
+        <input name="bank_account" placeholder='请输入支付宝账号' value="{{bank_account}}"></input>
+        <view class="code">
+            <input bindinput='regCode' name="sms_code" placeholder='请输入验证码'></input>
+            <button disabled='{{cding}}' class="send {{cding?'disable': ''}}" bindtap="send">获取验证码 {{countdown}}</button>
+        </view>
+		<view class="voice-code" bindtap='sendVoice' wx:if="{{isShowVoice}}">
+			接收不到短信验证码？点击获取语音验证码
+		</view>
+        <button form-type='submit'>确认设置</button>
+    </form>
+</view>

@@ -1,0 +1,156 @@
+<view class="container" scroll-y="{{true}}">
+  <view class="tab-content">
+    <view class="slide-banner" wx:if="{{bannerOne}}">
+      <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActiveColor}}" style="height:{{winWidth/3}}rpx">
+        <block wx:for="{{bannerOne}}" wx:key="swiper" wx:for-item="image">
+          <swiper-item>
+            <block wx:if="{{image.jump_type=='4'}}">
+              <block wx:if="{{image.item_mall_platform == 'pinduoduo' || image.item_mall_platform == 'jingdong'}}">
+                <navigator url='../goodsDetail/goodsInfo?num_iid={{image.content}}&shop_type={{image.item_mall_platform}}' style='display:block;width:100%;height:100%'>
+                  <image src="{{image.img_url}}" class="slide-image" />
+                </navigator>
+              </block>
+            </block>
+            <block wx:elif="{{image.jump_type=='3'}}">
+              <navigator url='{{image.content}}' style='display:block;width:100%;height:100%'>
+                <image src="{{image.img_url}}" class="slide-image" />
+              </navigator>
+            </block>
+            <block wx:elif="{{image.jump_type=='2'}}">
+              <navigator url='../webView/webView?url={{image.content}}' style='display:block;width:100%;height:100%'>
+                <image src="{{image.img_url}}" class="slide-image" />
+              </navigator>
+            </block>
+
+            <block wx:else>
+              <image src="{{image.img_url}}" class="slide-image" />
+            </block>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class="fixed-banner" wx:if="{{bannerTwo}}">
+      <block wx:for="{{bannerTwo}}" wx:key="index" wx:for-item="image">
+        <block wx:if="{{image.jump_type=='4'}}">
+          <block wx:if="{{image.item_mall_platform == 'pinduoduo' || image.item_mall_platform == 'jingdong'}}">
+            <navigator url='../goodsDetail/goodsInfo?num_iid={{image.content}}&shop_type={{image.item_mall_platform}}' style='display:block;width:100%;height:100%'>
+              <image src="{{image.img_url}}" class="slide-image" />
+            </navigator>
+          </block>
+        </block>
+        <block wx:elif="{{image.jump_type=='3'}}">
+          <navigator url='{{image.content}}' style='display:block;width:100%;height:100%'>
+            <image src="{{image.img_url}}" class="slide-image" />
+          </navigator>
+        </block>
+        <block wx:else>
+          <image src="{{image.img_url}}" class="banner-image" />
+        </block>
+      </block>
+    </view>
+  </view>
+
+  <view class="switch-content">
+    <view class="switch-tab">
+      <view class="item">
+        <image src="../../resource/page/index/left-{{hideTab?'select':'unselect'}}.png" data-current="0" bindtap="clickTab"></image>
+      </view>
+      <view class="item">
+        <image src="../../resource/page/index/right-{{!hideTab?'select':'unselect'}}.png" data-current="1" bindtap="clickTab"></image>
+      </view>
+    </view>
+  </view>
+  <view class="{{distanceTop>catDistanceTop?'tab-cate-top':'tab-cate'}}">
+    <!--  search input  -->
+    <view class='search'>
+      <view class='search-box'>
+        <image class='search-icon' src='../../resource/page/index/search.png'></image>
+        <input bindtap="gotoSearch" disabled="{{true}}" placeholder-class="search-input" placeholder="搜优惠商品" />
+      </view>
+    </view>
+    <!-- tab切换  -->
+    <scroll-view scroll-x="{{true}}" class="tab-h" scroll-left="{{scrollLeft}}">
+      <block wx:for="{{tabArr}}" wx:for-index="key" wx:for-item="tab">
+        <view class="tab-item {{currentTab==tab.index?'active':''}}" data-current="{{tab.index}}" bindtap="swichNav">{{tab.cateName}}</view>
+      </block>
+    </scroll-view>
+    <view class="menu_more" bindtap="toggleModal">
+      <image src="../../resource/page/index/cate.png"></image>
+    </view>
+    <!--排序菜单-->
+    <view class='sort-cont {{desc}}' wx:if="{{currentTab!=0}}">
+      <view class='item-sort all' bindtap="descGoods" data-desctype="all">综合</view>
+      <view class='item-sort count' bindtap="descGoods" data-desctype="count">销量</view>
+      <view class='item-sort price {{sort_price}}' bindtap="descGoods" data-desctype="price">
+        价格
+        <image src='../../resource/images/sort.png' class="default"></image>
+        <image src='../../resource/images/sort-down.png' class="down"></image>
+        <image src='../../resource/images/sort-up.png' class="up"></image>
+      </view>
+      <view wx:if="{{level> 0}}" class='item-sort income' bindtap="descGoods" data-desctype="income">
+        奖励比例
+      </view>
+    </view>
+    <!--  分类层 默认隐藏  -->
+    <view class="modal-box" style="display:{{flag?'none':'block'}}" fixed="{{true}}">
+      <view class="modal-body">
+        <view class="modal-title">
+          <text>全部分类</text>
+          <image src="../../resource/page/index/close.png" bindtap="toggleModal"></image>
+        </view>
+        <view class="modal-content">
+          <block wx:for="{{tabArr}}" wx:for-index="key" wx:for-item="tab">
+            <view class="cate-item {{currentTab==tab.index?'active':''}}" wx:if="{{tab.index!=0}}" data-current="{{tab.index}}" bindtap='switchCate'>
+              <text>{{tab.cateName}}</text>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+    <view class="modal-shadow" style="display:{{flag?'none':'block'}}" fixed="{{true}}">
+    </view>
+  </view>
+
+  <!-- 商品列表  -->
+  <view class="goods {{currentTab!=0?'other':''}}" style="margin-top:{{distanceTop>catDistanceTop ? fixedBlock : 0}}px">
+    <view class='goods-list' wx:if="{{goods_list}}">
+      <block wx:for="{{goods_list}}" wx:key="index">
+        <view class="goods-item" bindtap='gotoDetail' data-id="{{item.num_iid}}" style="{{currentTab!=0 && level>0?'height:670rpx':''}}">
+          <view class='goods-img'>
+            <image src='{{item.pic_url}}'></image>
+          </view>
+          <view class="goods-detail">
+
+            <view class='goods-name'>
+              <text class="topCate">{{shopType=='pinduoduo'?'拼':'JD'}}</text>
+              <text>{{item.title}}</text>
+            </view>
+            <view class="gain-leader" wx:if="{{level>0}}">奖励 ¥{{level>4 ? item.group_leader_commission :item.commission}}</view>
+            <block wx:if="{{currentTab==0}}">
+              <view class="price-num" style="margin-top:{{(level<=0) ? '60rpx':'10rpx'}}">
+                <text class="now-price">¥<text style="font-size:40rpx;margin-right:5rpx;">{{item.coupon_price}}</text></text>
+                <view class="ticket-price" wx:if="{{item.coupon_money!='0'}}">
+                  <text>¥{{item.coupon_money}}</text>
+                  <image src="../../resource/page/index/ticket.png"></image>
+                </view>
+              </view>
+            </block>
+            <block wx:else>
+              <view class="price-num" style="margin-top:{{(level<=0) ? '40rpx':'10rpx'}}">
+                <text class="now-price">¥<text style="font-size:40rpx;margin-right:5rpx;">{{item.coupon_price}}</text></text>
+                <view class="ticket-price" wx:if="{{item.coupon_money!='0'}}">
+                  <text>¥{{item.coupon_money}}</text>
+                  <image src="../../resource/page/index/ticket.png"></image>
+                </view>
+              </view>
+            </block>
+            <view class="goods-extend">
+              <view class="gain">¥ {{item.price}}</view>
+              <text class="sell-num" wx:if="{{item.sale_num!=0}}">已售{{item.sale_num}}件</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

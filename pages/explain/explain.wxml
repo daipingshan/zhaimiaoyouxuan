@@ -1,0 +1,35 @@
+<!--pages/income/income.wxml-->
+<view class='container'>
+	<view class="item">
+		<view class="title">1.成交预估</view>
+		<view class="desc">按照下单支付时间计算的预估收益，可能会犹豫退货或商家更改佣金等原因和实际收益不一致</view>
+	</view>
+	<view class="item">
+		<view class="title">2.结算收益</view>
+		<view class="desc">按照平台审核订单的时间计算的收益，正常订单都会在确认收货后15天通过审核，只有审核通过的订单佣金才会真正的加入到账户余额里</view>
+	</view>
+	<view class="item">
+		<view class="title">3.累计收益</view>
+		<view class="desc">指宅喵精选累计给您结算到账户余额的金额</view>
+	</view>
+	<view class="item">
+		<view class="title">4.可提现金额</view>
+		<view class="desc">指待提现的账户余额</view>
+	</view>
+	<view class="item">
+		<view class="title">5.订单数</view>
+		<view class="desc">指和交易相关的订单数量，同一个下单可能会有2个以上的订单数，比如团长自购，既有团长自购推广订单，也有团长分成订单</view>
+	</view>
+	<view class="item">
+		<view class="title">6.待结算</view>
+		<view class="desc"> 订单已付款，但是还没有结算到账户余额的订单，包括有已下单、已成团、已确认收货等状态的订单</view>
+	</view>
+	<view class="item">
+		<view class="title">7.已结算</view>
+		<view class="desc">已确认收货且经过平台审核通过收益已结算到账户余额的订单</view>
+	</view>
+	<view class="item">
+		<view class="title">8.已失效</view>
+		<view class="desc">指有发生过退款或退货等行为的订单</view>
+	</view>
+</view>

@@ -1,0 +1,283 @@
+/* pages/jdItem/item.wxss */
+
+.jd-item {
+  width: 100%;
+  font-size: 24rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  background: #bc0031;
+}
+
+.top-img {
+  width: 100%;
+  display: block;
+  position: relative;
+}
+
+.top-img .img-box{
+  width: 100%;
+  height: 100rpx;
+  position: absolute;
+  top: 620rpx;
+  left: 0;
+  z-index: 10;
+}
+
+.img-box navigator{
+  width: 50%;
+  height: 100rpx;
+  display: inline-block;
+}
+
+.img-box .btn{
+  width: 100%;
+  height: 100rpx;
+}
+
+.img-box .info{
+  float: left;
+}
+
+.img-box .pay{
+  float: right;
+}
+
+.top-img image {
+  width: 750rpx;
+  height: 974rpx;
+}
+
+.item-tab {
+  width: 100%;
+  height: 100rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.item-tab .item-cate{
+  width: 50%;
+  text-align: center;
+  margin: auto;
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: bold;
+  position: relative
+}
+
+.item-tab.free .free::after, .item-tab.new .new::after {
+    display: block;
+    content: "";
+    width: 50%;
+    height: 5px;
+    background: #fff;
+    position: absolute;
+    left: 25%;
+    bottom: -20rpx;
+}
+
+.item-list{
+  width: 92%;
+  background: #fff;
+  padding: 20rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  border-radius:15rpx;
+  min-height: 500rpx;
+  margin-bottom: 50rpx; 
+}
+
+.goods-list{
+  width: 200%
+}
+
+
+.goods-item {
+    height: 200rpx;
+    flex-wrap: nowrap;
+    margin-bottom: 10rpx;
+    box-shadow: 3px 3px 10px #ccc;
+    background-color: #fff;
+    width: 100%;
+}
+
+.goods-img {
+    float: left;
+    width: 200rpx;
+}
+
+
+.goods-img image {
+    margin: 10rpx;
+    height: 180rpx;
+    width: 180rpx;
+}
+
+.goods-detail {
+    float: right;
+    padding: 10rpx 20rpx;
+    width: 400rpx;
+}
+
+
+.goods-name {
+    font-size: 24rpx;
+    height: 80rpx;
+    display: block;
+    line-height: 40rpx;
+    overflow: hidden;
+}
+
+.goods-name .topCate {
+    color: #fff;
+    background: #bc0031;
+    font-size: 22rpx;
+    line-height: 35rpx;
+    width: 55rpx;
+    display: inline-block;
+    text-align: center;
+    border-radius: 40rpx;
+    float: left;
+    margin-top: 2rpx;
+    margin-right: 10rpx;
+}
+
+.goods-coupon{
+  width: 100%;
+  height: 40rpx;
+  margin:20rps;
+  position: relative;
+}
+
+
+
+.goods-coupon image {
+    height: 40rpx;
+    width: 130rpx;
+    right: 0px;
+    z-index: -1;
+}
+
+.goods-coupon text {
+    z-index: 10;
+    position: absolute;
+    left: 50rpx;
+    color: #bc0031;
+    text-align: left;
+    top:0;
+    font-size: 24rpx;
+    line-height: 40rpx
+}
+
+.price-num {
+    position: relative;
+    height: 50rpx;
+    font-size: 20rpx;
+    line-height: 50rpx;
+    color: #808080;
+}
+
+.now-price {
+    color: red;
+}
+
+.subsidy_money {
+    float: right;
+    color: #fff;
+    background: #bc0031;
+    padding: 0 20rpx;
+    border-radius: 30rpx 30rpx 30rpx 0rpx;
+}
+
+.share{
+  width: 150rpx;
+  height: 60rpx;
+  position: fixed;
+  text-align: center;
+  line-height: 60rpx;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  top: 894rpx;
+  right: 8%;
+  z-index: 11;
+  font-size: 20rpx;
+  border-radius: 30rpx;
+}
+
+.modal-box {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    background: rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    z-index: 99;
+}
+
+.modal-body {
+    position: relative;
+}
+
+.modal-content {
+    margin-left: auto;
+    margin-right: auto;
+    width: 86%;
+    overflow: hidden;
+    background: #fff;
+    padding: 0;
+}
+
+.modal-content canvas {
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.close {
+    position: fixed;
+    top: 33px;
+    right: 7%;
+    z-index: 999;
+    width: 40rpx;
+    height: 40rpx;
+}
+
+.footer {
+    height: 7%;
+    margin-right: 7%;
+    margin-left: 7%;
+    width: 86%;
+    background: red;
+    bottom: 0;
+    position: fixed;
+    display: flex;
+    justify-content: space-around;
+    z-index: 99;
+}
+
+.footer .footer-btn {
+    width: 50%;
+    text-align: center;
+    font-size: 30rpx;
+    font-family: '平方特细';
+    color: #fff;
+}
+
+.footer-close {
+    background: #808080;
+}
+
+.footer-copy {
+    background: #e6de3d;
+}
+
+.footer-save {
+    background: #febd99;
+}
+
+.footer-show {
+    background: #fe5d39;
+}

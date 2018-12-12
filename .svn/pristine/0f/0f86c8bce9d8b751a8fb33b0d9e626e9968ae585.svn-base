@@ -1,0 +1,102 @@
+<!--pages/orderdetails/orderdetails.wxml-->
+<view class='container'>
+  <view class='statis-con'>
+    <view class='statistics'>
+      <view class='data-bind'>
+        <view class='data-fl'>
+          <view class='data-picker'>
+            <view class="time">
+              <picker mode="date" value="{{start_day}}" bindchange="startChange">
+                <view class="picker">{{start_day}}</view>
+              </picker>
+              <image class='jt-up' src='../../resource/images/jt-up.png'></image>
+              <text class="line">-</text>
+              <picker mode="date" value="{{end_day}}" bindchange="endChange">
+                <view class="picker">{{end_day}}</view>
+              </picker>
+              <image class='jt-up' src='../../resource/images/jt-up.png'></image>
+            </view>
+          </view>
+        </view>
+        <view class='search-img-r' bindtap='shiftAction'>
+          <image src='../../resource/images/search-f.png'></image>
+        </view>
+      </view>
+      <view class='take-in-pay'>
+        <view class='take-in'>
+          <text class='take-in-tit'>总订单</text>
+          <text class='take-in-mn'>{{detail.total_num}}</text>
+        </view>
+        <view class='take-in'>
+          <text class='take-in-tit'>总订单金额</text>
+          <text class='take-in-mn'>{{detail.total_money}}</text>
+        </view>
+        <view class='take-in'>
+          <text class='take-in-tit'>总佣金</text>
+          <text class='take-in-mn'>{{detail.total_commission}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!--右边搜索下拉面板-->
+  <view class='search-panel' bindtap='hideShiftAct' hidden="{{hideShift}}">
+    <view class='search-nav'>
+      <view class='nav-cont state {{order_status}}' catchtap='changeState'>
+        <view class='whole all' data-type="all">全部</view>
+        <view class="paid" data-type="paid">已付款</view>
+        <view class="settle" data-type="settle">已结算</view>
+      </view>
+      <view class='nav-cont sorce {{sorce}}' catchtap='changeSorce'>
+        <view class='whole all' data-type="all">全部</view>
+        <view class="self" data-type="self">自购推广</view>
+        <view class="son" data-type="son">邀请奖励</view>
+        <view class="group_leader" data-type="group_leader">团长奖励</view>
+        <view class="partner" data-type="partner" wx:if="{{userLevel==10}}">合伙人奖励</view>
+      </view>
+      <view class='sure-btn' bindtap='ensure'>确定</view>
+    </view>
+  </view>
+  <view class='odr-item' style="background: {{listLen != 0?'#f7f7fa':'#fff'}};">
+
+    <view wx:if="{{listLen > 0}}">
+      <block wx:for="{{detail.list}}" data-index="{{index}}" wx:key="navItems" wx:for-item="item">
+        <view class='odr-con'>
+          <view class='odr-dis'>
+            <image class='odr-img' src='{{item.pic_url}}'></image>
+            <view>
+              <text class='pro-title'>{{item.goods_name}}</text>
+              <view class='money-con'>
+                <view class="money-con-item">
+                  <text class="money-con-title">付款金额</text>
+                  <text class="money-con-price">{{item.total_money}}</text>
+                </view>
+                <view class="money-con-item">
+                  <text class="money-con-title">成交预估收入</text>
+                  <text class="money-con-price">{{item.commission}}</text>
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class='odr-detail'>
+            <view class="order-detail-item">
+              <view class='item-desc'>{{item.order_type}}</view>
+            </view>
+            <view class="order-detail-item">
+              <view class='item-desc' style="color:#ff1849">{{item.pay_status_view}}</view>
+            </view>
+            <view class="order-detail-item">
+              <view class='item-desc' style="color:#ea6150">{{item.source_view}}</view>
+            </view>
+          </view>
+          <view class='odr-time'>
+            <text class='creation-time'>{{item.add_time_trans}} 下单</text>
+            <text class='end-time' wx:if="{{item.settle_time_trans}}">{{item.settle_time_trans}} 结算</text>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view wx:else>
+      <view class="empty">暂时没有订单~</view>
+    </view>
+  </view>
+</view>
